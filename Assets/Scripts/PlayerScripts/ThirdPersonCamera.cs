@@ -34,16 +34,28 @@ public class ThirdPersonCamera : MonoBehaviour
         this.transform.parent = Target.transform;
         Offset = new Vector3(0.0f, 0.8f, -0.8f);
 
+
+        this.transform.position = new Vector3(
+            Offset.x + Target.transform.position.x,
+            Offset.y + Target.transform.position.y,
+            Offset.z + Target.transform.position.z);
+
+
+        this.transform.rotation = Quaternion.LookRotation((Target.transform.position - this.transform.position).normalized);
     }
 
     private void Update()
     {
         this.transform.position = Offset + Target.transform.position;
 
+        /*
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
 
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+         */
+
+        
 
     }
 
